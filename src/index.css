@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'NeueHaasDisplay';
+  src: url('../fonts/NeueHaasDisplay-Roman.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-neuehaas {
+  font-family: 'NeueHaasDisplay', Arial, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  a {
+    @apply transition-opacity duration-300;
+  }
+  
+  nav ul li {
+    @apply mb-2;
+  }
+}
+
+.bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  mix-blend-mode: multiply;
+}
+
+.bubble-0 {
+  background: rgba(255, 182, 193, 0.6); /* Light Pink */
+}
+
+.bubble-1 {
+  background: rgba(173, 216, 230, 0.6); /* Light Blue */
+}
+
+.bubble-2 {
+  background: rgba(240, 230, 140, 0.6); /* Khaki */
+}
+
+.bubble-3 {
+  background: rgba(152, 251, 152, 0.6); /* Pale Green */
+}
+
+.bubble-4 {
+  background: rgba(221, 160, 221, 0.6); /* Plum */
+}
+
+.bubble-5 {
+  background: rgba(255, 228, 181, 0.6); /* Moccasin */
+}
+
+.bubble-6 {
+  background: rgba(135, 206, 250, 0.6); /* Sky Blue */
+}
+
+.bubble-7 {
+  background: rgba(255, 239, 213, 0.6); /* Papaya Whip */
+}
+
+.bubble-8 {
+  background: rgba(250, 128, 114, 0.6); /* Salmon */
+}
+
+.bubble-9 {
+  background: rgba(144, 238, 144, 0.6); /* Light Green */
+}
+
+.bubble-small {
+  width: 20px;
+  height: 20px;
+}
+
+.bubble-medium {
+  width: 60px;
+  height: 60px;
+}
+
+.bubble-large {
+  width: 100px;
+  height: 100px;
+}
+
+.bubble-xlarge {
+  width: 140px;
+  height: 140px;
+}
+
+.bubble.popped {
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fallAndFloat {
+  0% {
+    transform: translateY(-100%) translateX(0);
+  }
+  50% {
+    transform: translateY(50vh) translateX(20px);
+  }
+  75% {
+    transform: translateY(75vh) translateX(-20px);
+  }
+  100% {
+    transform: translateY(100vh) translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fadeInRight {
+  opacity: 0;
+  animation: fadeInRight 0.5s ease-out forwards;
+}
+
+.falling-bubble {
+  animation: fallAndFloat 10s linear infinite;
+  will-change: transform;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.translate-z-12 {
+  transform: translateZ(12px);
+}
+
+.name-text {
+  color: #E63A24;
+}
+
+.designation-text {
+  color: #E63A24;
+}
+
+.wave-button {
+  --c: #F8603E;
+  color: var(--c);
+  font-size: 16px;
+  border: 0.2em solid var(--c);
+  border-radius: 2em;
+  width: auto;
+  padding: 1em 2em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: sans-serif;
+  letter-spacing: 0.1em;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: 0.5s;
+}
+
+.wave-button span {
+  position: absolute;
+  width: 25%;
+  height: 100%;
+  background-color: var(--c);
+  transform: translateY(150%);
+  border-radius: 50%;
+  left: calc((var(--n) - 1) * 25%);
+  transition: 0.5s;
+  transition-delay: calc((var(--n) - 1) * 0.1s);
+  z-index: -1;
+}
+
+.wave-button:hover {
+  color: white;
+}
+
+.wave-button:hover span {
+  transform: translateY(0) scale(2);
+}
+
+.wave-button span:nth-child(1) { --n: 1; }
+.wave-button span:nth-child(2) { --n: 2; }
+.wave-button span:nth-child(3) { --n: 3; }
+.wave-button span:nth-child(4) { --n: 4; }
+
